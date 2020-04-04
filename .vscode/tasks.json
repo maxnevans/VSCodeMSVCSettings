@@ -1,0 +1,36 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "cl.exe build active file",
+            "command": "cl.exe",
+            "args": [
+                "${file}",
+                "/Zi",
+                "/EHsc",
+                "/Fe:",
+                "${fileDirname}\\bin\\${fileBasenameNoExtension}.exe",
+                "/Fdobj\\vc140.pdb",
+                "/Foobj\\",
+                "/Faobj\\",
+                "/std:c++17",
+                "/link /SUBSYSTEM:WINDOWS"
+            ],
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "dependsOn": ["prepare dir structure"]
+        },
+        {
+            "type": "shell",
+            "label": "prepare dir structure",
+            "command": "mkdir bin; mkdir obj",
+            "args": []
+        }
+    ]
+}
